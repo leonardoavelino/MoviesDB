@@ -9,10 +9,10 @@
 import Foundation
 
 class Movie {
-
+    
     var name: String = ""
     var poster: String = ""
-    var genre: String = ""
+    var genre_ids: [Int] = []
     var overview: String = ""
     var releaseDate: String = ""
 

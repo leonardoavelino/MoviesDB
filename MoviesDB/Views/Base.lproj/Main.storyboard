@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cqK-OD-iiY" customClass="MovieTableViewCell" customModule="MoviesDB" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" id="cqK-OD-iiY" customClass="MovieTableViewCell" customModule="MoviesDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cqK-OD-iiY" id="igg-n6-EEI">
@@ -49,7 +49,16 @@
                             <outlet property="delegate" destination="qzr-fY-XWS" id="3bG-Wo-EvM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movies" id="WYO-ap-R6g"/>
+                    <navigationItem key="navigationItem" title="Movies" id="WYO-ap-R6g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="VN2-51-mgT">
+                            <connections>
+                                <action selector="refresh:" destination="qzr-fY-XWS" id="g4s-k8-j76"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="wit-nm-0PF" id="VFn-dI-6JN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sbr-aD-26y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,6 +18,8 @@
 		89592B8A2193BA66001D20E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89592B882193BA66001D20E6 /* LaunchScreen.storyboard */; };
 		89592B952193BA66001D20E6 /* MoviesDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89592B942193BA66001D20E6 /* MoviesDBTests.swift */; };
 		89592BA02193BA66001D20E6 /* MoviesDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89592B9F2193BA66001D20E6 /* MoviesDBUITests.swift */; };
+		896BAD7A2194FD51001DA6E5 /* MoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896BAD792194FD51001DA6E5 /* MoviesService.swift */; };
+		896BAD7D21950105001DA6E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896BAD7C21950105001DA6E5 /* Constants.swift */; };
 		E219442B27139B4E2F92F388 /* Pods_MoviesDBUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE2C6D84ABDB415F3F50BD9 /* Pods_MoviesDBUITests.framework */; };
 		E5DE7D3D7628B871AE918BCF /* Pods_MoviesDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C39A8EDCC332A2B2CD804D /* Pods_MoviesDB.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		89592B9B2193BA66001D20E6 /* MoviesDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89592B9F2193BA66001D20E6 /* MoviesDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDBUITests.swift; sourceTree = "<group>"; };
 		89592BA12193BA66001D20E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		896BAD792194FD51001DA6E5 /* MoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesService.swift; sourceTree = "<group>"; };
+		896BAD7C21950105001DA6E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B9AE5C731FBCF0701CF89DD /* Pods-MoviesDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesDBTests/Pods-MoviesDBTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FE2C6D84ABDB415F3F50BD9 /* Pods_MoviesDBUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDBUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF9F883DC03E7921BBCFB2ED /* Pods-MoviesDBUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDBUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesDBUITests/Pods-MoviesDBUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,8 +139,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Screenshots;
-			path = MoviesDB/Screenshots;
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		891A014F2193DBC1009B7E6E /* CustomTableViewCells */ = {
@@ -181,6 +184,8 @@
 		89592B7E2193BA66001D20E6 /* MoviesDB */ = {
 			isa = PBXGroup;
 			children = (
+				896BAD7B2195009F001DA6E5 /* Helpers */,
+				896BAD782194FD29001DA6E5 /* Services */,
 				891A014A2193D8B2009B7E6E /* Views */,
 				891A014D2193D8CF009B7E6E /* ViewControllers */,
 				89342B182194A8FE009EB5CE /* Models */,
@@ -208,6 +213,22 @@
 				89592BA12193BA66001D20E6 /* Info.plist */,
 			);
 			path = MoviesDBUITests;
+			sourceTree = "<group>";
+		};
+		896BAD782194FD29001DA6E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				896BAD792194FD51001DA6E5 /* MoviesService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		896BAD7B2195009F001DA6E5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				896BAD7C21950105001DA6E5 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A1D41A9FAB07791324209880 /* Pods */ = {
@@ -527,7 +548,9 @@
 			files = (
 				89592B822193BA66001D20E6 /* ViewController.swift in Sources */,
 				89342B1621948FEE009EB5CE /* MovieViewModel.swift in Sources */,
+				896BAD7A2194FD51001DA6E5 /* MoviesService.swift in Sources */,
 				89592B802193BA66001D20E6 /* AppDelegate.swift in Sources */,
+				896BAD7D21950105001DA6E5 /* Constants.swift in Sources */,
 				89342B12219472D9009EB5CE /* Movie.swift in Sources */,
 				891A01512193DC0C009B7E6E /* MovieTableViewCell.swift in Sources */,
 			);
