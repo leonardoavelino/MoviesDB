@@ -12,6 +12,7 @@ class Movie {
     
     var name: String = ""
     var poster: String = ""
+    var backdrop: String = ""
     var genre_ids: [Int] = []
     var overview: String = ""
     var releaseDate: String = ""

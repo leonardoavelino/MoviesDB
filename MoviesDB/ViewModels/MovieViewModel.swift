@@ -12,8 +12,14 @@ class MovieViewModel {
     
     var movies: [Movie] = []
     
-    func getMovies(url: String) {
-        MoviesService.shared.getMovies(url: url, completion: { response in
+    var actualPage: Int = 1
+    
+    func getMovies(url: String, isRefresh: Bool, completion: @escaping ()->()) {
+        if isRefresh {
+            movies.removeAll()
+            actualPage = 1
+        }
+        MoviesService.shared.getMovies(url: url + "&page=", page: actualPage, completion: { response in
             
             do {
                 let json = try JSONSerialization.jsonObject(with: response.data!, options: [])
@@ -29,6 +35,7 @@ class MovieViewModel {
                     guard let name = (movie["title"] as? String?) ?? "",
                         let overview = (movie["overview"] as? String?) ?? "",
                         let poster = (movie["poster_path"] as? String?) ?? "",
+                        let backdrop = (movie["backdrop_path"] as? String?) ?? "",
                         let release_date = (movie["release_date"] as? String?) ?? "",
                         let genre_ids = (movie["genre_ids"] as? [Int]?) ?? [] else {
                             print("Erro creating movie")
@@ -40,11 +47,14 @@ class MovieViewModel {
                     newMovie.name = name
                     newMovie.overview = overview
                     newMovie.poster = poster
+                    newMovie.backdrop = backdrop
                     newMovie.genre_ids = genre_ids
                     newMovie.releaseDate = release_date
                     
                     self.movies.append(newMovie)
                 }
+                self.actualPage = page + 1
+                completion()
             } catch {
                 print("erro")
             }

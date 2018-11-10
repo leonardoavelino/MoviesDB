@@ -12,10 +12,12 @@ class Constants {
     
     static let tmdbConfigurationUrl = "https://api.themoviedb.org/3/configuration?api_key="
     
-    static var tmdbImageBaseUrl = ""
+    static var tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500"
     
     static let tmdbApiKey: String = "1f54bd990f1cdfb230adb312546d765d"
     
     static let tmdbMoviesBaseUrl: String = "https://api.themoviedb.org/3/discover/movie?api_key="
+    
+    static let genresBaseUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key="
     
 }

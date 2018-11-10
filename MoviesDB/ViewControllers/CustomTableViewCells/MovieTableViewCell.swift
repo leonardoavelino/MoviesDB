@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var genre: UILabel!
+    @IBOutlet weak var releaseDate: UILabel!
+    @IBOutlet weak var poster: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,8 +26,23 @@ class MovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(name: String) {
-        self.name.text = name
+    func setup(using movie: Movie) {
+        let url = URL(string: Constants.tmdbImageBaseUrl + movie.poster)
+        self.name.text = movie.name
+        
+        var genres: String = ""
+        
+        for (index, id) in movie.genre_ids.enumerated() {
+            genres.append(MoviesService.shared.genresList[id.description]!)
+            if index < movie.genre_ids.count - 1 {
+                genres.append(", ")
+            }
+        }
+        
+        self.genre.text = genres
+        self.releaseDate.text = movie.releaseDate
+        
+        self.poster.sd_setImage(with: url, completed: nil)
     }
 
 }

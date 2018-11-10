@@ -9,38 +9,74 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--MoviesDB-->
         <scene sceneID="C4i-at-vbb">
             <objects>
                 <tableViewController id="qzr-fY-XWS" customClass="ViewController" customModule="MoviesDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wit-nm-0PF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wit-nm-0PF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" id="cqK-OD-iiY" customClass="MovieTableViewCell" customModule="MoviesDB" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="132" id="cqK-OD-iiY" customClass="MovieTableViewCell" customModule="MoviesDB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cqK-OD-iiY" id="igg-n6-EEI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rid-fa-jq2">
-                                            <rect key="frame" x="21" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NRE-XB-WsZ">
+                                            <rect key="frame" x="8" y="8" width="79" height="120"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="79" id="44C-1S-HEu"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX5-bq-rLo">
+                                            <rect key="frame" x="95" y="35.5" width="240" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N00-OX-5WE">
+                                            <rect key="frame" x="95" y="106" width="149" height="17"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rid-fa-jq2">
+                                            <rect key="frame" x="95" y="8" width="240" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="rid-fa-jq2" firstAttribute="leading" secondItem="igg-n6-EEI" secondAttribute="leadingMargin" constant="13" id="8nR-FD-KhY"/>
-                                        <constraint firstItem="rid-fa-jq2" firstAttribute="top" secondItem="igg-n6-EEI" secondAttribute="topMargin" constant="3" id="e14-tt-ilQ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="rid-fa-jq2" secondAttribute="bottom" constant="3.5" id="o2h-u8-btB"/>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rid-fa-jq2" secondAttribute="trailing" id="rP3-4p-eRD"/>
+                                        <constraint firstItem="N00-OX-5WE" firstAttribute="leading" secondItem="NRE-XB-WsZ" secondAttribute="trailing" constant="8" id="5d2-1g-O3N"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sX5-bq-rLo" secondAttribute="trailing" constant="32" id="7bj-Xq-UBx"/>
+                                        <constraint firstAttribute="bottom" secondItem="NRE-XB-WsZ" secondAttribute="bottom" constant="4" id="At2-IU-mg4"/>
+                                        <constraint firstItem="rid-fa-jq2" firstAttribute="leading" secondItem="NRE-XB-WsZ" secondAttribute="trailing" constant="8" id="EnY-P2-QZd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="rid-fa-jq2" secondAttribute="trailing" constant="32" id="FOk-Yf-cjd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="N00-OX-5WE" secondAttribute="trailing" constant="123" id="JAD-lZ-kCB"/>
+                                        <constraint firstItem="sX5-bq-rLo" firstAttribute="top" secondItem="rid-fa-jq2" secondAttribute="bottom" constant="8" id="Lg2-O5-FCa"/>
+                                        <constraint firstItem="rid-fa-jq2" firstAttribute="top" secondItem="igg-n6-EEI" secondAttribute="topMargin" id="Lmd-25-7eR"/>
+                                        <constraint firstItem="sX5-bq-rLo" firstAttribute="leading" secondItem="NRE-XB-WsZ" secondAttribute="trailing" constant="8" id="Y1T-qo-BPJ"/>
+                                        <constraint firstItem="NRE-XB-WsZ" firstAttribute="leading" secondItem="igg-n6-EEI" secondAttribute="leading" constant="8" id="YSr-TR-PHN"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="N00-OX-5WE" secondAttribute="bottom" constant="1" id="n9z-tN-HmY"/>
+                                        <constraint firstItem="NRE-XB-WsZ" firstAttribute="top" secondItem="igg-n6-EEI" secondAttribute="top" constant="8" id="ujL-T8-BnT"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <outlet property="genre" destination="sX5-bq-rLo" id="IVT-JX-AAr"/>
                                     <outlet property="name" destination="rid-fa-jq2" id="A84-eH-Hef"/>
+                                    <outlet property="poster" destination="NRE-XB-WsZ" id="4rC-uy-ug2"/>
+                                    <outlet property="releaseDate" destination="N00-OX-5WE" id="k5B-yD-JKG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -49,20 +85,23 @@
                             <outlet property="delegate" destination="qzr-fY-XWS" id="3bG-Wo-EvM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movies" id="WYO-ap-R6g">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="VN2-51-mgT">
-                            <connections>
-                                <action selector="refresh:" destination="qzr-fY-XWS" id="g4s-k8-j76"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="MoviesDB" id="WYO-ap-R6g"/>
                     <connections>
                         <outlet property="tableView" destination="wit-nm-0PF" id="VFn-dI-6JN"/>
+                        <segue destination="W0a-aM-yc6" kind="show" identifier="showDetail" id="BXh-sT-7Ap"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sbr-aD-26y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="-48"/>
+            <point key="canvasLocation" x="-63.200000000000003" y="-48.125937031484263"/>
+        </scene>
+        <!--MovieDetail-->
+        <scene sceneID="0Ll-0i-9rn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetail" id="W0a-aM-yc6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01Y-Fs-HIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="-49"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lay-5u-JpM">
@@ -71,6 +110,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XHB-dd-DCX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="qzr-fY-XWS" kind="relationship" relationship="rootViewController" id="HBe-d8-zOz"/>
@@ -81,4 +125,5 @@
             <point key="canvasLocation" x="-1013" y="-48"/>
         </scene>
     </scenes>
+    <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
 </document>
