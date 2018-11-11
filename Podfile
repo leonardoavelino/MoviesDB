@@ -6,9 +6,8 @@ target 'MoviesDB' do
   use_frameworks!
 
   # Pods for MoviesDB
-  pod 'SDWebImage'
+  pod 'SDWebImage', '~> 4.2.2'
   pod 'Alamofire'
-  pod 'AlamofireObjectMapper'
 
   target 'MoviesDBTests' do
     inherit! :search_paths
