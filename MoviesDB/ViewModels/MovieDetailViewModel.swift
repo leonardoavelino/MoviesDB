@@ -8,10 +8,15 @@
 
 import Foundation
 
+/// The MovieDetailViewModel.
 class MovieDetailViewModel {
     
+    /// The Movie object to populate the view.
     var movie: Movie = Movie()
     
+    /// Setups the Movie object.
+    ///
+    /// - Parameter movie: The movie object to be setted.
     func setup(using movie: Movie) {
         self.movie = movie
     }

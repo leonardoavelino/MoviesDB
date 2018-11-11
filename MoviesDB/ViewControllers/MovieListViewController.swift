@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController, UISearchBarDelegate {
+class MovieListViewController: UITableViewController, UISearchBarDelegate {
     
     var movieViewModel = MovieViewModel()
     var isRequesting = false
@@ -18,7 +18,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     override lazy var refreshControl: UIRefreshControl? = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
-            #selector(ViewController.handleRefresh(_:)),
+            #selector(MovieListViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.lightGray
         
@@ -37,14 +37,15 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func initialLoading() {
-        MoviesService.shared.getGenres(completion: {
-            self.loadMovies(refreshing: false)
+        MoviesService.shared.getGenres(completion: { [weak self] success in
+            if success {
+                self?.loadMovies(refreshing: false)
+            }
         })
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadMovies(refreshing: true)
-        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -56,21 +57,18 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        movieViewModel.getMovies(isRefresh: true, query: searchBar.text, completion: {
-            self.tableView.reloadData()
-            self.searchBar.endEditing(true)
-        })
+        self.searchBar.endEditing(true)
+        loadMovies(refreshing: true)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
         self.searchBar.text = ""
         loadMovies(refreshing: true)
-        self.tableView.reloadData()
     }
     
     func loadMovies(refreshing: Bool) {
-        if movieViewModel.actualPage > movieViewModel.totalPages && !refreshing {
+        if movieViewModel.currentPage + 1 > movieViewModel.totalPages && !refreshing || MoviesService.shared.genresList.isEmpty {
             return
         }
         isRequesting = true
@@ -78,14 +76,16 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         if !(searchBar.text?.isEmpty)! {
             query = self.searchBar.text
         }
-        movieViewModel.getMovies(isRefresh: refreshing, query: query, completion: {
-            self.tableView.reloadData()
-            self.isRequesting = false
+        movieViewModel.getMovies(isRefresh: refreshing, query: query, completion: { [weak self] success in
+            if success {
+                self?.tableView.reloadData()
+                self?.isRequesting = false
+            }
         })
     }
 }
 
-extension ViewController {
+extension MovieListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! MovieTableViewCell
         

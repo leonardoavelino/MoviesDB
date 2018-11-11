@@ -22,47 +22,28 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+    }
 
-        // Do any additional setup after loading the view.
+    override func viewDidLayoutSubviews() {
+        self.overview.setContentOffset(.zero, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func loadData() {
         let url = URL(string: Constants.tmdbBackdropImageBaseUrl + movieDetailViewModel.movie.backdrop)
-        self.backdrop.sd_setImage(with: url, completed: { (image, error, cacheType, imageURL) in
+        self.backdrop.sd_setImage(with: url, completed: { [weak self] (image, error, cacheType, imageURL) in
             if error != nil {
-                let urlPoster = URL(string: Constants.tmdbOriginalImageBaseUrl + self.movieDetailViewModel.movie.poster)
-                self.backdrop.sd_setImage(with: urlPoster, completed: nil)
+                let urlPoster = URL(string: Constants.tmdbOriginalImageBaseUrl + (self?.movieDetailViewModel.movie.poster)!)
+                self?.backdrop.sd_setImage(with: urlPoster, completed: nil)
             }
         })
         
-        var genres: String = ""
-        
-        for (index, id) in movieDetailViewModel.movie.genre_ids.enumerated() {
-            genres.append(MoviesService.shared.genresList[id.description]!)
-            if index < movieDetailViewModel.movie.genre_ids.count - 1 {
-                genres.append(", ")
-            }
-        }
-        
         self.name.text = movieDetailViewModel.movie.name
-        self.genre.text = genres
+        self.genre.text = Util.shared.decodeGenres(genre_ids: movieDetailViewModel.movie.genre_ids)
         self.overview.text = movieDetailViewModel.movie.overview
-        self.releaseDate.text = movieDetailViewModel.movie.releaseDate
+        self.releaseDate.text = Util.shared.parseDate(toDetail: true, date: movieDetailViewModel.movie.releaseDate)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

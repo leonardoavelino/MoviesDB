@@ -29,50 +29,68 @@
                                                     <constraint firstAttribute="height" constant="236" id="Uhb-4J-6nu"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfs-Ek-Bf5">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfs-Ek-Bf5">
                                                 <rect key="frame" x="16" y="252" width="343" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwY-wi-mEu">
-                                                <rect key="frame" x="16" y="280" width="343" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwY-wi-mEu">
+                                                <rect key="frame" x="68" y="280" width="291" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoT-CE-K1r">
-                                                <rect key="frame" x="16" y="305" width="343" height="15"/>
+                                                <rect key="frame" x="102" y="305" width="257" height="15"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Overview" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xK6-bS-PCA">
-                                                <rect key="frame" x="16" y="328" width="343" height="164"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Overview" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xK6-bS-PCA">
+                                                <rect key="frame" x="11" y="328" width="353" height="164"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Release Date: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FF-zY-up1">
+                                                <rect key="frame" x="16" y="305" width="81" height="15"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekx-ed-9Uy">
+                                                <rect key="frame" x="16" y="280" width="47" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="SwY-wi-mEu" firstAttribute="top" secondItem="wfs-Ek-Bf5" secondAttribute="bottom" constant="8" id="02c-oC-G4R"/>
                                             <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="FoT-CE-K1r" secondAttribute="trailing" constant="16" id="131-nP-4bW"/>
-                                            <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="xK6-bS-PCA" secondAttribute="trailing" constant="16" id="3IN-vh-J7h"/>
+                                            <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="xK6-bS-PCA" secondAttribute="trailing" constant="11" id="3IN-vh-J7h"/>
                                             <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="SwY-wi-mEu" secondAttribute="trailing" constant="16" id="88H-b1-XMB"/>
                                             <constraint firstItem="wfs-Ek-Bf5" firstAttribute="top" secondItem="CSM-iN-lm5" secondAttribute="bottom" constant="8" symbolic="YES" id="BQ7-Zx-9fc"/>
-                                            <constraint firstItem="SwY-wi-mEu" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="Mvj-ya-tyw"/>
+                                            <constraint firstItem="4FF-zY-up1" firstAttribute="top" secondItem="ekx-ed-9Uy" secondAttribute="bottom" constant="8" id="M29-bO-3q2"/>
                                             <constraint firstItem="CSM-iN-lm5" firstAttribute="top" secondItem="YNi-G7-ncb" secondAttribute="top" constant="8" id="Nr7-iU-iXl"/>
-                                            <constraint firstItem="FoT-CE-K1r" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="Q0r-OR-Eti"/>
                                             <constraint firstItem="wfs-Ek-Bf5" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="TzO-5L-FYS"/>
+                                            <constraint firstItem="4FF-zY-up1" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="Uq7-TD-h5Z"/>
                                             <constraint firstItem="FoT-CE-K1r" firstAttribute="top" secondItem="SwY-wi-mEu" secondAttribute="bottom" constant="8" id="V7v-9F-zKE"/>
                                             <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="CSM-iN-lm5" secondAttribute="trailing" constant="16" id="V9c-fL-Qg1"/>
+                                            <constraint firstItem="ekx-ed-9Uy" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="VNm-3i-BaR"/>
                                             <constraint firstItem="CSM-iN-lm5" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="Vv1-0c-EOI"/>
                                             <constraint firstItem="xK6-bS-PCA" firstAttribute="top" secondItem="FoT-CE-K1r" secondAttribute="bottom" constant="8" id="WYD-9l-xjq"/>
+                                            <constraint firstItem="ekx-ed-9Uy" firstAttribute="top" secondItem="wfs-Ek-Bf5" secondAttribute="bottom" constant="8" id="XwW-ep-ehv"/>
+                                            <constraint firstItem="FoT-CE-K1r" firstAttribute="leading" secondItem="4FF-zY-up1" secondAttribute="trailing" constant="5" id="ZYE-DU-ymV"/>
                                             <constraint firstAttribute="bottom" secondItem="xK6-bS-PCA" secondAttribute="bottom" constant="8" id="bSe-uT-rYc"/>
                                             <constraint firstAttribute="height" constant="500" id="d01-bd-n8y"/>
-                                            <constraint firstItem="xK6-bS-PCA" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="16" id="piX-Ce-EXc"/>
+                                            <constraint firstItem="SwY-wi-mEu" firstAttribute="leading" secondItem="ekx-ed-9Uy" secondAttribute="trailing" constant="5" id="hd8-Lf-XBT"/>
+                                            <constraint firstItem="xK6-bS-PCA" firstAttribute="top" secondItem="4FF-zY-up1" secondAttribute="bottom" constant="8" id="hka-ab-AUK"/>
+                                            <constraint firstItem="4FF-zY-up1" firstAttribute="top" secondItem="SwY-wi-mEu" secondAttribute="bottom" constant="8" id="jNm-rd-q0i"/>
+                                            <constraint firstItem="xK6-bS-PCA" firstAttribute="leading" secondItem="YNi-G7-ncb" secondAttribute="leading" constant="11" id="piX-Ce-EXc"/>
                                             <constraint firstItem="YNi-G7-ncb" firstAttribute="trailing" secondItem="wfs-Ek-Bf5" secondAttribute="trailing" constant="16" id="rm7-Ws-21e"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="YNi-G7-ncb"/>

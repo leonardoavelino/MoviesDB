@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+/// The custom MovieTableViewCell.
 class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var genre: UILabel!
@@ -17,31 +18,20 @@ class MovieTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    /// Fills cell fields with the movie informations.
+    ///
+    /// - Parameter movie: The movie to be used to get information to the cell.
     func setup(using movie: Movie) {
         let url = URL(string: Constants.tmdbPosterImageBaseUrl + movie.poster)
         self.name.text = movie.name
-        
-        var genres: String = ""
-        
-        for (index, id) in movie.genre_ids.enumerated() {
-            genres.append(MoviesService.shared.genresList[id.description]!)
-            if index < movie.genre_ids.count - 1 {
-                genres.append(", ")
-            }
-        }
-        
-        self.genre.text = genres
-        self.releaseDate.text = movie.releaseDate
-        
+        self.genre.text = Util.shared.decodeGenres(genre_ids: movie.genre_ids)
+        self.releaseDate.text = Util.shared.parseDate(toDetail: false, date: movie.releaseDate)
         self.poster.sd_setImage(with: url, completed: nil)
     }
 

@@ -8,60 +8,37 @@
 
 import Foundation
 
+/// The MovieViewModel.
 class MovieViewModel {
     
+    /// The Movies list.
     var movies: [Movie] = []
     
-    var actualPage: Int = 1
-    
+    /// The current showing page.
+    var currentPage: Int = 0
+
+    /// The total number of pages that can be displayed.
     var totalPages: Int = 1
-    
-    func getMovies(isRefresh: Bool, query: String?, completion: @escaping ()->()) {
+
+    /// Fetchs movies from tmdb and updates the movies list. If query is not nil, it will return a search result.
+    ///
+    /// - Parameters:
+    ///   - isRefresh: Used to resfresh or not the movies tableView datasource.
+    ///   - query: Query parameter to search for specific movies.
+    ///   - completion: Called when the movies list was updated. True if the request was successful, false otherwise.
+    func getMovies(isRefresh: Bool, query: String?, completion: @escaping (Bool) -> Void) {
         if isRefresh {
             movies.removeAll()
-            actualPage = 1
+            currentPage = 0
         }
-        MoviesService.shared.getMovies(page: actualPage, query: query, completion: { response in
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: response.data!, options: [])
-                
-                guard let dictionary = json as? [String: Any],
-                    let page: Int = dictionary["page"] as? Int,
-                    let pages: Int = dictionary["total_pages"] as? Int,
-                    let moviesList = dictionary["results"] as? [[String: Any]] else {
-                        print("Error creating dictionary")
-                        return
-                }
-                
-                self.totalPages = pages
-                
-                for movie in moviesList {
-                    guard let name = (movie["title"] as? String?) ?? "",
-                        let overview = (movie["overview"] as? String?) ?? "",
-                        let poster = (movie["poster_path"] as? String?) ?? "",
-                        let backdrop = (movie["backdrop_path"] as? String?) ?? "",
-                        let release_date = (movie["release_date"] as? String?) ?? "",
-                        let genre_ids = (movie["genre_ids"] as? [Int]?) ?? [] else {
-                            print("Erro creating movie")
-                            return
-                    }
-                    
-                    let newMovie = Movie()
-                    
-                    newMovie.name = name
-                    newMovie.overview = overview
-                    newMovie.poster = poster
-                    newMovie.backdrop = backdrop
-                    newMovie.genre_ids = genre_ids
-                    newMovie.releaseDate = release_date
-                    
-                    self.movies.append(newMovie)
-                }
-                self.actualPage = page + 1
-                completion()
-            } catch {
-                print("erro")
+        MoviesService.shared.getMovies(page: currentPage + 1, query: query, completion: { [weak self] movies, page, pages in
+            if let page = page {
+                self?.currentPage = page
+                self?.totalPages = pages!
+                self?.movies.append(contentsOf: movies)
+                completion(true)
+            } else {
+                completion(false)
             }
         })
     }
