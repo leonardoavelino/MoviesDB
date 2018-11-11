@@ -14,8 +14,17 @@ class MoviesService {
     
     var genresList: [String: String] = [:]
     
-    func getMovies(url: String, page: Int, completion: @escaping (DataResponse<Any>)->()) {
-        Alamofire.request(url + page.description).responseJSON(completionHandler: { (response) in
+    func getMovies(page: Int, query: String?, completion: @escaping (DataResponse<Any>)->()) {
+        
+        var queryString = Constants.tmdbMoviesBaseUrl + Constants.tmdbApiKey +
+            Constants.pageParameter + page.description
+        
+        if let query = query {
+            queryString = Constants.tmdbSearchMoviesBaseUrl + Constants.tmdbApiKey +
+                Constants.pageParameter + page.description + Constants.queryParameter + query
+        }
+        print("QueryString \(queryString)")
+        Alamofire.request(queryString).responseJSON(completionHandler: { (response) in
             switch response.result {
             case .success:
                 completion(response)
@@ -25,8 +34,9 @@ class MoviesService {
         })
     }
     
-    func getGenres() {
-        Alamofire.request(Constants.genresBaseUrl + Constants.tmdbApiKey).responseJSON(completionHandler: { (response) in
+    func getGenres(completion: @escaping () -> ()) {
+        Alamofire.request(Constants.genresBaseUrl +
+            Constants.tmdbApiKey).responseJSON(completionHandler: { (response) in
             switch response.result {
             case .success:
                 do {
@@ -46,6 +56,7 @@ class MoviesService {
                         }
                         self.genresList[id.description] = name
                     }
+                    completion()
                 } catch {
                     print("Error parsing JSON Object")
                 }

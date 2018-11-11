@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, UISearchBarDelegate {
     
     var movieViewModel = MovieViewModel()
     var isRequesting = false
+    var isSearching = false
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override lazy var refreshControl: UIRefreshControl? = {
         let refreshControl = UIRefreshControl()
@@ -25,21 +27,25 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupTableView()        
+        self.initialLoading()
+    }
+    
+    func setupTableView() {
         self.tableView.addSubview(self.refreshControl!)
-        loadMovies(refreshing: false)
-        // Do any additional setup after loading the view, typically from a nib.
+        self.searchBar.delegate = self
+    }
+    
+    func initialLoading() {
+        MoviesService.shared.getGenres(completion: {
+            self.loadMovies(refreshing: false)
+        })
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadMovies(refreshing: true)
         self.tableView.reloadData()
         refreshControl.endRefreshing()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,9 +55,30 @@ class ViewController: UITableViewController {
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        movieViewModel.getMovies(isRefresh: true, query: searchBar.text, completion: {
+            self.tableView.reloadData()
+            self.searchBar.endEditing(true)
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+        self.searchBar.text = ""
+        loadMovies(refreshing: true)
+        self.tableView.reloadData()
+    }
+    
     func loadMovies(refreshing: Bool) {
+        if movieViewModel.actualPage > movieViewModel.totalPages && !refreshing {
+            return
+        }
         isRequesting = true
-        movieViewModel.getMovies(url: Constants.tmdbMoviesBaseUrl + Constants.tmdbApiKey, isRefresh: refreshing, completion: {
+        var query: String? = nil
+        if !(searchBar.text?.isEmpty)! {
+            query = self.searchBar.text
+        }
+        movieViewModel.getMovies(isRefresh: refreshing, query: query, completion: {
             self.tableView.reloadData()
             self.isRequesting = false
         })
@@ -60,13 +87,12 @@ class ViewController: UITableViewController {
 
 extension ViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieTableViewCell else {
-            print("Couldn't create cell")
-            fatalError("Couldn't create cell")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! MovieTableViewCell
+        
         if movieViewModel.movies.count > 0 {
             cell.setup(using: movieViewModel.movies[indexPath.row])
-        }        
+        }
+        
         return cell
     }
     
@@ -89,16 +115,12 @@ extension ViewController {
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120.0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("MovieListSize \(movieViewModel.movies.count)")
         return movieViewModel.movies.count
     }
-
-    
 }
 

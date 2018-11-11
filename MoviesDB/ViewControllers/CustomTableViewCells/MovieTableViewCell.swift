@@ -27,7 +27,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func setup(using movie: Movie) {
-        let url = URL(string: Constants.tmdbImageBaseUrl + movie.poster)
+        let url = URL(string: Constants.tmdbPosterImageBaseUrl + movie.poster)
         self.name.text = movie.name
         
         var genres: String = ""

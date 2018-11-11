@@ -32,11 +32,10 @@ class MovieDetailViewController: UIViewController {
     }
     
     func loadData() {
-        let url = URL(string: Constants.tmdbImageBaseUrl + movieDetailViewModel.movie.backdrop)
-        //self.backdrop.sd_setImage(with: url, completed: nil)
+        let url = URL(string: Constants.tmdbBackdropImageBaseUrl + movieDetailViewModel.movie.backdrop)
         self.backdrop.sd_setImage(with: url, completed: { (image, error, cacheType, imageURL) in
             if error != nil {
-                let urlPoster = URL(string: Constants.tmdbImageBaseUrl + self.movieDetailViewModel.movie.poster)
+                let urlPoster = URL(string: Constants.tmdbOriginalImageBaseUrl + self.movieDetailViewModel.movie.poster)
                 self.backdrop.sd_setImage(with: urlPoster, completed: nil)
             }
         })

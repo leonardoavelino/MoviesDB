@@ -14,22 +14,27 @@ class MovieViewModel {
     
     var actualPage: Int = 1
     
-    func getMovies(url: String, isRefresh: Bool, completion: @escaping ()->()) {
+    var totalPages: Int = 1
+    
+    func getMovies(isRefresh: Bool, query: String?, completion: @escaping ()->()) {
         if isRefresh {
             movies.removeAll()
             actualPage = 1
         }
-        MoviesService.shared.getMovies(url: url + "&page=", page: actualPage, completion: { response in
+        MoviesService.shared.getMovies(page: actualPage, query: query, completion: { response in
             
             do {
                 let json = try JSONSerialization.jsonObject(with: response.data!, options: [])
                 
                 guard let dictionary = json as? [String: Any],
                     let page: Int = dictionary["page"] as? Int,
+                    let pages: Int = dictionary["total_pages"] as? Int,
                     let moviesList = dictionary["results"] as? [[String: Any]] else {
                         print("Error creating dictionary")
                         return
                 }
+                
+                self.totalPages = pages
                 
                 for movie in moviesList {
                     guard let name = (movie["title"] as? String?) ?? "",
