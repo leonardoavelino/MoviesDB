@@ -28,7 +28,7 @@ class MoviesService {
     func getMovies(page: Int, query: String?, completion: @escaping (_ movies: [Movie], _ page: Int?, _ pages: Int?) -> Void) {
         
         var queryString = Constants.tmdbMoviesBaseUrl + Constants.tmdbApiKey +
-            Constants.pageParameter + page.description
+            Constants.pageParameter + page.description + Constants.orderParameter
         
         if let query = query {
             let encodedString = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)

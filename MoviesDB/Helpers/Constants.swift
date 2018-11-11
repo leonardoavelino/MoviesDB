@@ -25,6 +25,9 @@ struct Constants {
     
     /// The query parameter.
     static let queryParameter = "&query="
+
+    /// The ordering parameter.
+    static let orderParameter = "&sort_by=release_date.desc"
     
     /// The global tmdb API KEY.
     static let tmdbApiKey: String = "1f54bd990f1cdfb230adb312546d765d"
