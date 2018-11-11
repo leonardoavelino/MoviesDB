@@ -32,7 +32,7 @@ class MovieTableViewCell: UITableViewCell {
         self.name.text = movie.name
         self.genre.text = Util.shared.decodeGenres(genre_ids: movie.genre_ids)
         self.releaseDate.text = Util.shared.parseDate(toDetail: false, date: movie.releaseDate)
-        self.poster.sd_setImage(with: url, completed: nil)
+        self.poster.sd_setImage(with: url, placeholderImage: UIImage(named: "no-image"), options: [], completed: nil)
     }
 
 }

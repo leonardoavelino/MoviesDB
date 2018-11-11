@@ -117,9 +117,11 @@
                     <connections>
                         <outlet property="backdrop" destination="CSM-iN-lm5" id="Gd9-p6-4GY"/>
                         <outlet property="genre" destination="SwY-wi-mEu" id="hwt-kY-eud"/>
+                        <outlet property="genreLabel" destination="ekx-ed-9Uy" id="jZh-ZP-HbD"/>
                         <outlet property="name" destination="wfs-Ek-Bf5" id="iVI-rH-IfU"/>
                         <outlet property="overview" destination="xK6-bS-PCA" id="swi-Sn-CG7"/>
                         <outlet property="releaseDate" destination="FoT-CE-K1r" id="pkD-9h-Cci"/>
+                        <outlet property="releaseDateLabel" destination="4FF-zY-up1" id="Ney-Xs-Bpe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJg-NV-IYg" userLabel="First Responder" sceneMemberID="firstResponder"/>

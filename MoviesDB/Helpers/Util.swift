@@ -25,13 +25,15 @@ class Util {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
-            let date = dateFormatter.date(from: date)
+            if let date = dateFormatter.date(from: date) {
+                dateFormatter.dateFormat = "MMMM dd, yyyy"
+                dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+                let timeStamp = dateFormatter.string(from: date)
 
-            dateFormatter.dateFormat = "MMMM dd, yyyy"
-            dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
-            let timeStamp = dateFormatter.string(from: date!)
-
-            return timeStamp
+                return timeStamp
+            } else {
+                return Bundle.main.localizedString(forKey: "no_date", value: nil, table: "Default")
+            }
         } else {
             return String(date.prefix(4))
         }

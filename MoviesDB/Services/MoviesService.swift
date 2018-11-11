@@ -31,8 +31,9 @@ class MoviesService {
             Constants.pageParameter + page.description
         
         if let query = query {
+            let encodedString = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
             queryString = Constants.tmdbSearchMoviesBaseUrl + Constants.tmdbApiKey +
-                Constants.pageParameter + page.description + Constants.queryParameter + query
+                Constants.pageParameter + page.description + Constants.queryParameter + encodedString!
         }
 
         Alamofire.request(queryString).responseJSON(completionHandler: { response in
