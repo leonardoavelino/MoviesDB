@@ -9,7 +9,7 @@
 import Foundation
 
 /// The MovieViewModel.
-class MovieViewModel {
+class MovieListViewModel {
     
     /// The Movies list.
     var movies: [Movie] = []
