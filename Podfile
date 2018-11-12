@@ -9,15 +9,4 @@ target 'MoviesDB' do
   pod 'SDWebImage', '~> 4.2.2'
   pod 'Alamofire'
 
-  target 'MoviesDBTests' do
-    inherit! :search_paths
-    # Pods for testing
-
-  end
-
-  target 'MoviesDBUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
