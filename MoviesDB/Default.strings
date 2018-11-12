@@ -10,3 +10,6 @@
 "genre" = "Genre:";
 "no_date" = "No release date available";
 "no_genre" = "No genre data available";
+"no_internet" = "No Internet";
+"cached_data" = "Showing cached data.";
+"check_internet" = "Please check internet connection.";

@@ -46,18 +46,40 @@ class MovieListViewController: UITableViewController, UISearchBarDelegate {
 
     /// Fetches for genres and movies on load.
     func initialLoading() {
-        MoviesService.shared.getGenres(completion: { [weak self] success in
-            if success {
-                self?.loadMovies(refreshing: false)
-            }
-        })
+        if Connectivity.isConnectedToInternet {
+            MoviesService.shared.getGenres(completion: { [weak self] success in
+                if success {
+                    self?.loadMovies(refreshing: false)
+                }
+            })
+        } else {
+            self.present(
+                Util.shared.createAlert(title: Bundle.main.localizedString(forKey: "no_internet", value: nil, table: "Default"),
+                                        message: Bundle.main.localizedString(forKey: "check_internet", value: nil, table: "Default")),
+                                        animated: true, completion: nil)
+        }
     }
 
     /// Handles the pull to refresh function.
     ///
     /// - Parameter refreshControl: The refresh control to handle.
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        loadMovies(refreshing: true)
+        if Connectivity.isConnectedToInternet {
+            if MoviesService.shared.genresList.isEmpty {
+                MoviesService.shared.getGenres(completion: { [weak self] success in
+                    if success {
+                        self?.loadMovies(refreshing: false)
+                    }
+                })
+            } else {
+                loadMovies(refreshing: true)
+            }
+        } else {
+            self.present(
+                Util.shared.createAlert(title: Bundle.main.localizedString(forKey: "no_internet", value: nil, table: "Default"),
+                                        message: Bundle.main.localizedString(forKey: "cached_data", value: nil, table: "Default")),
+                                        animated: true, completion: nil)
+        }
         refreshControl.endRefreshing()
     }
 
@@ -73,7 +95,22 @@ class MovieListViewController: UITableViewController, UISearchBarDelegate {
     /// - Parameter searchBar: The search bar element.
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
-        loadMovies(refreshing: true)
+        if Connectivity.isConnectedToInternet {
+            if MoviesService.shared.genresList.isEmpty {
+                MoviesService.shared.getGenres(completion: { [weak self] success in
+                    if success {
+                        self?.loadMovies(refreshing: false)
+                    }
+                })
+            } else {
+                loadMovies(refreshing: true)
+            }
+        } else {
+            self.present(
+                Util.shared.createAlert(title: Bundle.main.localizedString(forKey: "no_internet", value: nil, table: "Default"),
+                                        message: Bundle.main.localizedString(forKey: "check_internet", value: nil, table: "Default")),
+                                        animated: true, completion: nil)
+        }
     }
 
     /// Handles the click on search bar cancel button.
@@ -100,8 +137,13 @@ class MovieListViewController: UITableViewController, UISearchBarDelegate {
         movieListViewModel.getMovies(isRefresh: refreshing, query: query, completion: { [weak self] success in
             if success {
                 self?.tableView.reloadData()
-                self?.isRequesting = false
+            } else {
+                self?.present(
+                    Util.shared.createAlert(title: Bundle.main.localizedString(forKey: "no_internet", value: nil, table: "Default"),
+                                            message: Bundle.main.localizedString(forKey: "cached_data", value: nil, table: "Default")),
+                                            animated: true, completion: nil)
             }
+            self?.isRequesting = false
         })
     }
 }

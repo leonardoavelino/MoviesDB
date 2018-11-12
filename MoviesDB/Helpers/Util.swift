@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import Alamofire
 
 /// Helper class to parse dates and decode genres.
 class Util {
@@ -55,5 +57,33 @@ class Util {
             }
         }
         return genres
+    }
+
+    /// Creates and returns a alert controller.
+    ///
+    /// - Parameters:
+    ///   - title: The alert title.
+    ///   - message: The alert message.
+    /// - Returns: The alert controller.
+    func createAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+
+        return alert
+    }
+}
+
+/// Struct to check connectivity
+struct Connectivity {
+
+    /// Alamofire network manager
+    static let sharedInstance = NetworkReachabilityManager()!
+
+    /// Checks for internet connection
+    static var isConnectedToInternet:Bool {
+        return self.sharedInstance.isReachable
     }
 }

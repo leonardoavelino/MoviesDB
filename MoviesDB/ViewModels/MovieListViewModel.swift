@@ -28,17 +28,19 @@ class MovieListViewModel {
     ///   - completion: Called when the movies list was updated. True if the request was successful, false otherwise.
     func getMovies(isRefresh: Bool, query: String?, completion: @escaping (Bool) -> Void) {
         if isRefresh {
-            movies.removeAll()
             currentPage = 0
         }
-        MoviesService.shared.getMovies(page: currentPage + 1, query: query, completion: { [weak self] movies, page, pages in
-            if let page = page {
-                self?.currentPage = page
+        MoviesService.shared.getMovies(page: currentPage + 1, query: query, completion: { [weak self] movies, page, pages, result in
+            if result {
+                self?.currentPage = page!
                 self?.totalPages = pages!
+                if self?.currentPage == 1 {
+                    self?.movies.removeAll()
+                }
                 self?.movies.append(contentsOf: movies)
-                completion(true)
+                completion(result)
             } else {
-                completion(false)
+                completion(result)
             }
         })
     }

@@ -25,7 +25,7 @@ class MoviesService {
     ///   - query: Query parameter to search for specific movies.
     ///   - completion: Called when the request is done. Contains a movies list,
     ///                 a page number and total pages number on success and a empty movies list otherwise.
-    func getMovies(page: Int, query: String?, completion: @escaping (_ movies: [Movie], _ page: Int?, _ pages: Int?) -> Void) {
+    func getMovies(page: Int, query: String?, completion: @escaping (_ movies: [Movie], _ page: Int?, _ pages: Int?, _ result: Bool) -> Void) {
         
         var queryString = Constants.tmdbMoviesBaseUrl + Constants.tmdbApiKey +
             Constants.pageParameter + page.description + Constants.orderParameter
@@ -73,13 +73,13 @@ class MoviesService {
 
                         movies.append(newMovie)
                     }
-                    completion(movies, page, pages)
+                    completion(movies, page, pages, true)
                 } catch {
-                    completion([], nil, nil)
+                    completion([], nil, nil, false)
                 }
             case .failure:
                 print("Error getting movies data")
-                completion([], nil, nil)
+                completion([], nil, nil, false)
             }
         })
     }
